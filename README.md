@@ -31,7 +31,7 @@
 | price   | integer | null: false |
 | details   | text | null: false |
 | shipping_fee_id   | integer | null: false |
-| sender_region_id | integer | null: false |
+| prefecture_id | integer | null: false |
 | shipping_date_id | integer | null: false |
 
 
@@ -70,9 +70,10 @@
 | zip_code   | string | null: false |
 | prefecture_id  | integer | null: false |
 | city   | string | null: false |
-| address   | text | null: false |
-| building_name   | text | null: false |
+| address   | string | null: false |
+| building_name   | string |  |
 | phone_number   | string | null: false |
+| payments  | reference | null: false,foreign_key:true |
 
 
 ### Association
