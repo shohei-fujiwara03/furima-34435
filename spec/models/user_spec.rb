@@ -53,7 +53,7 @@ RSpec.describe User, type: :model do
     it "emailには@が含まれていないと登録できない" do
       @user.email = "example.gmail.com"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email must include @")
+      expect(@user.errors.full_messages).to include("Email is invalid")
     end
     it "名字が空では登録できない" do
       @user.family_name = ""
@@ -105,7 +105,6 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include"Password confirmation doesn't match Password"
     end
-
     it 'passwordとpassword_confirmationが不一致では登録できないこと' do
       @user.password = 'pass00'
       @user.password_confirmation = 'pass001'
@@ -125,13 +124,17 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password include both letters and numbers")
    end
-
    it 'passwordが6文字以上でも英字のみでは登録できない' do
     @user.password = "aaaaaa"
     @user.password_confirmation = "aaaaaa"
     @user.valid?
     expect(@user.errors.full_messages).to include("Password include both letters and numbers")
    end
+   it "passwordが全角の場合は登録できない" do
+    @user.password = "ｐｔｋ００１"
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Password include both letters and numbers")
+  end
    it "生年月日が空では登録できない" do
     @user.birth_date = ""
     @user.valid?
