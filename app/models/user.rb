@@ -20,4 +20,7 @@ class User < ApplicationRecord
          
          validates :password, format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/,message:"include both letters and numbers"}
         end
+
+
+        has_many :items
 end
