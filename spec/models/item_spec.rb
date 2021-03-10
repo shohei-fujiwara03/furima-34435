@@ -45,27 +45,27 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Image can't be blank")
     end
     it 'カテゴリーidが1では登録できない' do
-      @item.category_id = '1'
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category must be other than 1")
     end
     it 'コンディションidが1では登録できない' do
-      @item.condition_id = '1'
+      @item.condition_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Condition must be other than 1")
     end
     it '都道府県idが1では登録できない' do
-      @item.prefecture_id = '1'
+      @item.prefecture_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
     end
     it '配送料idが1では登録できない' do
-      @item.shipping_fee_id = '1'
+      @item.shipping_fee_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping fee must be other than 1")
     end
     it '発送日idが1では登録できない' do
-      @item.shipping_date_id = '1'
+      @item.shipping_date_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping date must be other than 1")
     end
@@ -84,8 +84,18 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is beyond acceptable limits")
     end
-    it '商品価格は半角でなければ登録できない' do
+    it '商品価格は全角数字では登録できない' do
       @item.price = '３００'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price must be half integer")
+    end
+    it '商品価格は半角英数字混合では登録できない' do
+      @item.price = "300dollers"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price must be half integer")
+    end
+    it '商品価格は半角英字のみでは登録できない' do
+      @item.price = "one-thousand dollers"
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be half integer")
     end
