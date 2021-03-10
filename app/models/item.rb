@@ -13,8 +13,9 @@ class Item < ApplicationRecord
   with_options presence:true do
 
     validates :title
-    validates :price
     validates :details
+    validates :image
+    validates :price,numericality: {with:/\A[0-9]+\z/,message:"must be half integer"},inclusion: { in: 300..9_999_999,message:"is beyond acceptable limits" }
 
     with_options numericality: { other_than: 1 }  do
     validates :category_id
