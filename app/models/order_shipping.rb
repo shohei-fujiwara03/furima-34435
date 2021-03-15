@@ -13,4 +13,8 @@ class OrderShipping
   end
     validates :prefecture_id,numericality: { other_than: 1 } 
 
+    def save
+      order = Order.create(user_id:user_id, item_id: item_id)
+      Shipping.create(zip_code: zip_code, prefecture_id:prefecture_id, address:address,building_name:building_name,phone_number:phone_number,order_id:order.id )
+
 end
