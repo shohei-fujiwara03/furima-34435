@@ -2,7 +2,8 @@ class OrdersController < ApplicationController
 
   
 
-  def new
+  def index
+    @item =Item.find(params[:item_id])
     @order_shipping = OrderShipping.new
   end
 
