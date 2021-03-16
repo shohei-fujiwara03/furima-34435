@@ -8,7 +8,7 @@ class OrderShipping
     validates :user_id
     validates :item_id
     validates :zip_code,format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :phone_number,numericality: {with: /\A[0-9]{11}\z/, message: "is only 11 integer"}
+    validates :phone_number,format: {with: /\A\d{11}\z/, message: "is only 11 integer"}
   end
     validates :prefecture_id,numericality: { other_than: 1 } 
 
