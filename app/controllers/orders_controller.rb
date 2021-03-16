@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_7a081ea96c6650c9c04183f5"  
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
     Payjp::Charge.create(
       amount: order_shipping_params[:price],  
       card: order_shipping_params[:token],    
