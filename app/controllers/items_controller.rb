@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-  
+    
   end
 
   def edit
@@ -55,9 +55,10 @@ def set_item
 end
 
 def move_to_index
-  unless current_user == @item.user
+  if current_user != @item.user || @item.order.present?
     redirect_to action: :index
   end
+    
 end
 
 
