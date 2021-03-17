@@ -9,6 +9,7 @@ RSpec.describe OrderShipping, type: :model do
       sleep(0.01)
     end
 
+    context '購入ができる時' do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@order_shipping).to be_valid
     end
@@ -16,6 +17,9 @@ RSpec.describe OrderShipping, type: :model do
       @order_shipping.building_name = ""
       expect(@order_shipping).to be_valid
     end
+  end
+
+  context '購入ができない時' do
     it 'zip_codeが空だと保存できない' do
       @order_shipping.zip_code = ""
       @order_shipping.valid?
@@ -57,6 +61,17 @@ RSpec.describe OrderShipping, type: :model do
       @order_shipping.valid?
       expect(@order_shipping.errors.full_messages).to include("Token can't be blank")
     end
+    it 'user_idが空の場合購入できない' do
+      @order_shipping.user_id = nil
+      @order_shipping.valid?
+      expect(@order_shipping.errors.full_messages).to include("User can't be blank")
+    end
+    it 'item_idが空の場合購入できない' do
+      @order_shipping.item_id = nil
+      @order_shipping.valid?
+      expect(@order_shipping.errors.full_messages).to include("Item can't be blank")
+    end
+  end
 
   end
 end

@@ -55,13 +55,10 @@ def set_item
 end
 
 def move_to_index
-  unless current_user == @item.user 
+  unless current_user == @item.user || !(current_user == @item.user && @item.order.present?)
     redirect_to action: :index
   end
-
-  if current_user == @item.user && @item.order.present?
-    redirect_to action: :index
-  end
+    
 end
 
 
