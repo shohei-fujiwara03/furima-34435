@@ -13,8 +13,10 @@ const pay = () => {
       exp_month: formData.get("order_shipping[exp_month]"),
       exp_year: `20${formData.get("order_shipping[exp_year]")}`,
     };
+      console.log(card);
 
     Payjp.createToken(card, (status, response) => {
+      console.log(response);
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
@@ -22,14 +24,13 @@ const pay = () => {
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
 
-      document.getElementById("order_shipping_number").removeAttribute("name");
-      document.getElementById("order_shipping_cvc").removeAttribute("name");
-      document.getElementById("order_shipping_exp_month").removeAttribute("name");
-      document.getElementById("order_shipping_exp_year").removeAttribute("name");
+      document.getElementById("card-number").removeAttribute("name");
+      document.getElementById("card-cvc").removeAttribute("name");
+      document.getElementById("card-exp-month").removeAttribute("name");
+      document.getElementById("card-exp-year").removeAttribute("name");
 
       document.getElementById("charge-form").submit();
     });
   });
 };
-
 window.addEventListener("load", pay);
