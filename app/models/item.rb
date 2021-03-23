@@ -9,13 +9,13 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one :order
-  has_one_attached :image
+  has_many_attached :images
 
   with_options presence:true do
 
     validates :title
     validates :details
-    validates :image
+    validates :images
     validates :price,numericality: {with:/\A[0-9]+\z/,message:"must be half integer"},inclusion: { in: 300..9_999_999,message:"is beyond acceptable limits" }
 
     with_options numericality: { other_than: 1 }  do

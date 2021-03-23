@@ -83,6 +83,7 @@
 .click-upload {
   margin: 15px 0;
   min-width: 250px;
+  display:block;
 }
 
 .click-upload>p {
@@ -226,4 +227,13 @@
 
 .inc {
   font-size: 13px;
+}
+
+.image-element>img{
+  width:100px;
+  height:100px;
+}
+
+#item-image{
+  padding:10px;
 }
