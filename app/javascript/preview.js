@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const createImageHTML = (blob) => {
     // 画像を表示するためのdivを生成
     const imageElement = document.createElement('div')
+    imageElement.style.display = "block";
     imageElement.setAttribute('class', "image-element")
     let imageElementNum = document.querySelectorAll('.image-element').length
 
