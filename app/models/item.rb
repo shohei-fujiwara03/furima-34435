@@ -16,9 +16,9 @@ class Item < ApplicationRecord
     validates :title
     validates :details
     validates :images
-    validates :price,numericality: {with:/\A[0-9]+\z/,message:"must be half integer"},inclusion: { in: 300..9_999_999,message:"is beyond acceptable limits" }
+    validates :price,numericality: {with:/\A[0-9]+\z/,message:"は半角数字でないと登録できません"},inclusion: { in: 300..9_999_999,message:"が許容範囲を超えています" }
 
-    with_options numericality: { other_than: 1 }  do
+    with_options numericality: { other_than: 1,message:"を選択してください" }  do
     validates :category_id
     validates :condition_id
     validates :shipping_fee_id
